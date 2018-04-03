@@ -1,0 +1,148 @@
+﻿@using Capstone.Web.Models
+@model ParkWeather
+
+@{
+    string tempUnit = string.Format("°{0}", (Session["TempUnit"] as string).ToUpper());
+    DateTime today = DateTime.Now;
+}
+
+
+@section StyleSheet{
+    <link href="~/Content/ParkDetail.css" rel="stylesheet" />
+}
+
+<div class="row park-main-weather"  style="background-image:url(/Content/img/parks/@(Model.Park.ParkCode).jpg)">
+    <div class="col-md-5 park-pic">
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-title">Today</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@(Model.Today.Forecast.ToUpper())</h6>
+            <img class="card-img-top" src="~/Content/img/weather/@(Model.Today.Forecast.Replace(" ", String.Empty)).png" alt="Card image cap">
+            <div class="card-body">
+                <p class="d-inline-block px-2"><span class="font-weight-bold">High:</span> @(Model.ConvertTemp(Model.Today.High))@tempUnit</p>
+                <p class="d-inline-block px-2"><span class="font-weight-bold">Low:</span> @(Model.ConvertTemp(Model.Today.Low))@tempUnit</p>
+                <p class="card-text">@Model.GetAdvisory(Model.Today.Forecast, Model.Today.High, Model.Today.Low)</p>
+
+                <!-- Fahrenheit/Celsius Toggle Button-->
+                <form action="@Url.Action("TempConversion", "Park", new { id = Model.Park.ParkCode} )" method="post" class="text-left">
+                    <div class="form-row text-center">
+                        @Html.RadioButton("fOrC", "f", Session["TempUnit"] as string == "f" ? true : false, new { id = "fahrenheit" }) &deg;F
+                        @Html.RadioButton("fOrC", "c", Session["TempUnit"] as string == "c" ? true : false, new { id = "celsius" }) &deg;C
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 intro-text">
+        <h1 class="park-name">@Model.Park.ParkName - @Model.Park.State</h1>
+        <blockquote class="w3-panel w3-leftbar w3-light-grey">
+            <p class="w3-large">
+                <i>"@Model.Park.InspirationalQuote"</i>
+            </p>
+            <p>-@Model.Park.InspirationalQuoteSource</p>
+        </blockquote>
+    </div>
+</div>
+
+
+
+<!-- Remaining 4 Day Forecast-->
+<!--Tomorrow-->
+<div class="card-row-container">
+    <div class="card-group mx-auto">
+        <div class="card card-2">
+            <div class="card-header">@( today.AddDays(1).ToString("dddd") )</div>
+            <h6 class="card-title mb-2 text-muted">@(Model.Tomorrow.Forecast.ToUpper())</h6>
+            <img style="border-radius:50%" class="card-img-top" src="~/Content/img/weather/@(Model.Tomorrow.Forecast.Replace(" ", String.Empty)).png" />
+            <div class="card-body">
+                <p class="d-inline-block px-2"><span class="font-weight-bold">High:</span> @(Model.ConvertTemp(Model.Tomorrow.High))@tempUnit</p>
+                <p class="d-inline-block px-2"><span class="font-weight-bold">Low:</span> @(Model.ConvertTemp(Model.Tomorrow.Low))@tempUnit</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">@Model.GetAdvisory(Model.Tomorrow.Forecast, Model.Tomorrow.High, Model.Tomorrow.Low)</p>
+            </div>
+        </div>
+        <!--2 Days From Today-->
+        <div class="card card-3">
+            <div class="card-header">@( today.AddDays(2).ToString("dddd") )</div>
+            <h6 class="card-title mb-2 text-muted">@(Model.TwoDaysFromNow.Forecast.ToUpper())</h6>
+            <img style="border-radius:50%" class="card-img-top" src="~/Content/img/weather/@(Model.TwoDaysFromNow.Forecast.Replace(" ", String.Empty)).png" />
+            <div class="card-body">
+                <p class="d-inline-block px-2"><span class="font-weight-bold">High:</span> @(Model.ConvertTemp(Model.TwoDaysFromNow.High))@tempUnit</p>
+                <p class="d-inline-block px-2"><span class="font-weight-bold">Low:</span> @(Model.ConvertTemp(Model.TwoDaysFromNow.Low))@tempUnit</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">@Model.GetAdvisory(Model.TwoDaysFromNow.Forecast, Model.TwoDaysFromNow.High, Model.TwoDaysFromNow.Low)</p>
+            </div>
+        </div>
+        <!--3 Days From Today-->
+        <div class="card card-4">
+            <div class="card-header">@( today.AddDays(3).ToString("dddd") )</div>
+            <h6 class="card-title mb-2 text-muted">@(Model.ThreeDaysFromNow.Forecast.ToUpper())</h6>
+            <img style="border-radius:50%" class="card-img-top" src="~/Content/img/weather/@(Model.ThreeDaysFromNow.Forecast.Replace(" ", String.Empty)).png" />
+            <div class="card-body">
+                <p class="d-inline-block px-2"><span class="font-weight-bold">High:</span> @(Model.ConvertTemp(Model.ThreeDaysFromNow.High))@tempUnit</p>
+                <p class="d-inline-block px-2"><span class="font-weight-bold">Low:</span> @(Model.ConvertTemp(Model.ThreeDaysFromNow.Low))@tempUnit</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">@Model.GetAdvisory(Model.ThreeDaysFromNow.Forecast, Model.ThreeDaysFromNow.High, Model.ThreeDaysFromNow.Low)</p>
+            </div>
+        </div>
+        <!--4 Days From Today-->
+        <div class="card card-5">
+            <div class="card-header">@( today.AddDays(4).ToString("dddd") )</div>
+            <h6 class="card-title mb-2 text-muted">@(Model.FourDaysFromNow.Forecast.ToUpper())</h6>
+            <img style="border-radius:50%" class="card-img-top" src="~/Content/img/weather/@(Model.FourDaysFromNow.Forecast.Replace(" ", String.Empty)).png" />
+            <div class="card-body">
+                <p class="d-inline-block px-2"><span class="font-weight-bold">High:</span> @(Model.ConvertTemp(Model.FourDaysFromNow.High))@tempUnit</p>
+                <p class="d-inline-block px-2"><span class="font-weight-bold">Low:</span> @(Model.ConvertTemp(Model.FourDaysFromNow.Low))@tempUnit</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">@Model.GetAdvisory(Model.FourDaysFromNow.Forecast, Model.FourDaysFromNow.High, Model.FourDaysFromNow.Low)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Park Info-->
+<div class="row park-info-container">
+    <div class="col-md-6 description">
+        <h3 class="info-header">About</h3>
+        <p class="lead">@Model.Park.ParkDescription</p>
+    </div>
+    <div class="col-md-6 facts">
+        <h3 class="info-header">Facts</h3>
+        <ul>
+            <li>
+                <p>Founded in @Model.Park.YearFounded</p>
+            </li>
+            <li>
+                <p>@Model.Park.NumberOfAnimalSpecies.ToString("N0") Animal Species</p>
+            </li>
+            <li>
+                <p>@Model.Park.NumberOfCampSites.ToString("N0") Campsites</p>
+            </li>
+            <li>
+                <p>@Model.Park.MilesOfTrail.ToString("N0") Miles Of Trail</p>
+            </li>
+            <li>
+                <p>@Model.Park.Acreage.ToString("N0") Acres</p>
+            </li>
+            <li>
+                <p>@Model.Park.Climate Climate</p>
+            </li>
+            <li>
+                <p>@Model.Park.ElevationInFeet.ToString("N0") Ft. Above Sea Level</p>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+
+<!-- JS for toggle click-->
+<script>
+    $('input[type=radio]').on('change', function () {
+        $(this).closest("form").submit();
+    });
+</script>

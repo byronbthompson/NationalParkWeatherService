@@ -1,0 +1,30 @@
+﻿.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+
+form{
+    display: block;
+    width: 30%;
+    margin: 0 auto;
+    background-color: rgba(0,0,0,.5);
+    padding: 4%;
+    color: floralwhite
+
+}
+
+.survey-container {
+    padding: 2em;
+    background-image: url('img/parks/parkDistort.png');
+    background-position: center;
+    background-size:cover;
+    min-height: 100vh;
+}
+
+.survey-container h1{
+    padding-bottom: 1.5%;
+    font-weight: bold;
+    font-size: 2em
+}

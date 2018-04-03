@@ -1,0 +1,94 @@
+﻿
+/* The hero image */
+.hero-image {
+    /* The image used */
+    background-image: url('img/parks/cover4.jpg');
+    /* Set a specific height */
+    min-height: 90vh;
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 4em;
+}
+
+.hero-text {
+    text-align: center;
+    position: relative;
+    top: 14em;
+}
+
+    .hero-text h1 {
+        font-size: 4.5em;
+        font-weight: bold;
+        color: floralwhite;
+        text-shadow: 4px 3px 1px #000000;
+        padding-bottom: 1em;
+    }
+
+.survey-container {
+    align-content:center;
+}
+.survey-container .header {
+    color: #349DDD;
+    font-size: 3.5em;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: .7em;
+}
+
+.survey-container .intro-text {
+    text-align: left;
+    font-size: 1.3em;
+    color: #5D3500;
+    font-weight: 600;
+    margin: 0 auto;
+    margin-bottom: 3em;
+    width: 50%;
+}
+
+.survey-container a {
+    text-decoration: none;
+}
+
+.survey-container h2 {
+    font-size: 1.6em;
+    padding-bottom: 1px;
+    color: #349DDD;
+}
+.survey-container p {
+    font-size: 1.2em;
+    text-align: center;
+    padding-bottom: 1px;
+    color: #349DDD;
+}
+
+.survey-container h3 {
+    font-size: 1.5em;
+    text-align: center;
+    padding-bottom: 2px;
+    color: #349DDD;
+}
+
+.survey-container h4 {
+    font-size: 1.4em;
+    text-align: center;
+    padding-bottom: 10px;
+    color: #349DDD;
+}
+
+.survey-container h3:hover {
+    border-bottom: 1px solid #349DDD;
+}
+
+.survey-container img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 4em;
+    padding: 0 1em 2em 1em;
+    align-content: center;
+    margin: 0 auto;
+}

@@ -1,0 +1,144 @@
+﻿
+/* Today weather */
+.park-main-weather {
+    padding: 0 2em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: bottom
+}
+
+.park-main-weather h1 {
+    font-size: 4.5em;
+    font-weight: bold;
+    color: floralwhite;
+    text-shadow: 4px 3px 1px #000000;
+    margin-bottom: 0;
+    margin-top: 7%
+}
+
+
+.park-main-weather blockquote {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: floralwhite;
+    text-shadow: 4px 3px 1px #000000;
+    padding: 1em;
+    background-color: rgba(0,0,0, .54);
+
+}
+
+.park-main-weather .card{
+    box-sizing: border-box;
+    padding: 2em;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 0 auto;
+    
+}
+
+.park-main-weather .card-title {
+    color: rgba(52, 157, 221, 1);
+}
+
+
+.park-main-weather img {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.park-main-weather .col-md-7{
+    padding: 0 0;
+}
+
+.park-main-weather .col-md-5 {
+    background-color: inherit;
+    padding: 2.2em;
+}
+
+.park-main-weather form{
+    display: inline-block;
+}
+
+#fahrenheit, #celsius {
+    width: 2em;
+    margin: 0 2em;
+}
+
+/* Cards */
+
+.card {
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, .2) .5em .5em .5em;
+    border-radius: 4%;
+}
+
+.park-main-weather .card img {
+    box-shadow: rgba(0, 0, 0, .2) .5em .5em .5em;
+    border-radius: 50%;
+}
+
+.card-header {
+    margin-bottom: 2em;
+    color: rgba(52, 157, 221, 1);
+    font-weight: bolder;
+    font-size: 1.7em;
+    background-color: floralwhite;
+}
+
+.card-footer{
+    min-height: 6em;
+    color: rgba(93,53,0, 1);
+    background-color: floralwhite;
+    text-align: left;
+}
+
+
+
+.card-row-container{
+    background-color: white;
+    padding: 2em;
+}
+
+.card-group {
+    width: 100%;
+    margin-top: -4%
+}
+
+.card-group .card {
+    margin: 0 3em;
+}
+
+.card-group img {
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, .2) .5em .5em .5em;  
+}
+
+/* Park Info*/
+.park-info-container {
+    box-sizing: border-box;
+    min-height: 70vh;
+    padding: 3em;
+    
+}
+
+.park-info-container .description {
+    font-weight: bold;
+    color: black;
+    background-size: cover;
+        
+
+}
+
+.park-info-container .info-header {
+    color: rgba(52, 157, 221, 1);
+    font-weight: bold;
+}
+

@@ -1,0 +1,93 @@
+﻿@using Capstone.Web.Models
+@section StyleSheet{
+    <link href="~/Content/Home.css" rel="stylesheet" />
+}
+
+@model IList<Park>
+
+<!------------------- Hero Image ----------------------->
+
+<div class="hero-image row">
+    <div class="hero-text col">
+        <h1>National Park Weather Service</h1>
+        <a class="btn btn-dark" href="@Url.Action("Index","Survey")">Click here to vote For Your Favorite Park.</a>
+    </div>
+</div>
+
+<!------------------- main section of national parks ----------------------->
+
+<section class="parks-container">
+    <h2 class="header">National Parks</h2>
+    <p class="intro-text">
+        Explore some of the most popular national parks.
+    </p>
+    @for (var i = 0; i < Model.Count; i += 3)
+    {
+        if (i <= Model.Count - 3)
+        {
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href="@Url.Action("Detail", "Park", new {id = Model[i].ParkCode })">
+                        <img class="img-fluid" src="~/Content/img/parks/@(Model[i].ParkCode).jpg" />
+
+                        <h3>@Model[i].ParkName</h3>
+                        <h4>@Model[i].State</h4>
+                        <p class="description">@Model[i].ShortDescription</p>
+                    </a>
+                </div>
+
+                <div class="col-sm-4">
+                    <a href="@Url.Action("Detail", "Park", new {id = Model[i+1].ParkCode })">
+                        <img class="img-fluid" src="~/Content/img/parks/@(Model[i+1].ParkCode).jpg" />
+                        <h3>@Model[i + 1].ParkName</h3>
+                        <h4>@Model[i + 1].State</h4>
+                        <p class="description">@Model[i + 1].ShortDescription</p>
+                    </a>
+                </div>
+
+                <div class="col-sm-4">
+                    <a href="@Url.Action("Detail", "Park", new {id = Model[i+2].ParkCode })">
+                        <img class="img-fluid" src="~/Content/img/parks/@(Model[i+2].ParkCode).jpg" />
+                        <h3>@Model[i + 2].ParkName</h3>
+                        <h4>@Model[i + 2].State</h4>
+                        <p class="description">@Model[i + 2].ShortDescription</p>
+                    </a>
+                </div>
+            </div>
+        }
+        else if (i == Model.Count - 2)
+        {
+            <div class="col-sm-4">
+                <a href="@Url.Action("Detail", "Park", new {id = Model[i].ParkCode })">
+                    <img class="img-fluid" src="~/Content/img/parks/@(Model[i].ParkCode).jpg" />
+                    <h3>@Model[i].ParkName</h3>
+                    <h4>@Model[i].State</h4>
+                    <p class="description">@Model[i].ShortDescription</p>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="@Url.Action("Detail", "Park", new {id = Model[i+1].ParkCode })">
+                    <img class="img-fluid" src="~/Content/img/parks/@(Model[i+1].ParkCode).jpg" />
+                    <h3>@Model[i + 1].ParkName - @Model[i + 1].State</h3>
+                    <p class="description">@Model[i + 1].ShortDescription</p>
+                </a>
+            </div>
+
+        }
+        else if (i == Model.Count - 1)
+        {
+            <div class="col-sm-4">
+                <a href="@Url.Action("Detail", "Park", new {id = Model[i].ParkCode })">
+                    <img class="img-fluid" src="~/Content/img/parks/@(Model[i].ParkCode).jpg" />
+                </a>
+                <a href="@Url.Action("Detail", "Park", new {id = Model[i].ParkCode })">
+                    <h3>@Model[i].ParkName</h3>
+                    <h4>@Model[i].State</h4>
+                </a>
+                <p class="description">@Model[i].ShortDescription</p>
+            </div>
+        }
+
+
+    }
+</section>

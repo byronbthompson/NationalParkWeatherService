@@ -1,0 +1,118 @@
+﻿@using Capstone.Web.Models
+@section Stylesheet{
+    <link href="~/Content/SurveyResults.css" rel="stylesheet" />
+}
+@model List<Result>
+
+
+@if (!(Model.Count >= 1))
+{
+    <div class="row pt-5">
+        <div class="col text-center">
+            <h1>We're tallying up the votes.</h1>
+            <h3>Come back soon to see the results.</h3>
+            <p>Have you voted?</p>
+            <a class="btn btn-dark" href="@Url.Action("Index","Survey")">Click here to vote For Your Favorite Park.</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="survey-container text-center w-100">
+        <div class="row">
+            <div class="col">
+                <a href="@Url.Action("Detail", "Park", new {id = Model[0].ParkCode })">
+                    <h2 class="text-center">Top Park with @Model[0].VoteCount Vote(s)!</h2>
+                    <h2>@Model[0].ParkName</h2>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="@Url.Action("Detail", "Park", new {id = Model[0].ParkCode })">
+                    <img class="img-fluid" src="~/Content/img/parks/@(Model[0].ParkCode).jpg" />
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="survey-container">
+        @for (var i = 1; i < Model.Count; i += 3)
+        {
+            if (i <= Model.Count - 3)
+            {
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i].ParkCode })">
+                            <h3>@Model[i].ParkName</h3>
+                            <p> @Model[i].VoteCount Vote(s)</p>
+                        </a>
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i].ParkCode })">
+                            <img class="img-fluid" src="~/Content/img/parks/@(Model[i].ParkCode).jpg" />
+                        </a>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i + 1].ParkCode })">
+                            <h3>@Model[i + 1].ParkName</h3>
+                            <p> @Model[i + 1].VoteCount Vote(s)</p>
+                        </a>
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i + 1].ParkCode })">
+                            <img class="img-fluid" src="~/Content/img/parks/@(Model[i + 1].ParkCode).jpg" />
+                        </a>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i + 2].ParkCode })">
+                            <h3>@Model[i + 2].ParkName</h3>
+                            <p> @Model[i + 2].VoteCount Vote(s)</p>
+                        </a>
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i + 2].ParkCode })">
+                            <img class="img-fluid" src="~/Content/img/parks/@(Model[i + 2].ParkCode).jpg" />
+                        </a>
+                    </div>
+                </div>
+            }
+            else if (i == Model.Count - 2)
+            {
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i].ParkCode })">
+                            <h3>@Model[i].ParkName</h3>
+                            <p> @Model[i].VoteCount Vote(s)</p>
+                        </a>
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i].ParkCode })">
+                            <img class="img-fluid" src="~/Content/img/parks/@(Model[i].ParkCode).jpg" />
+                        </a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i + 1].ParkCode })">
+                            <h3>@Model[i + 1].ParkName</h3>
+                            <p> @Model[i + 1].VoteCount Vote(s)</p>
+                        </a>
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i + 1].ParkCode })">
+                            <img class="img-fluid" src="~/Content/img/parks/@(Model[i + 1].ParkCode).jpg" />
+                        </a>
+                    </div>
+                </div>
+            }
+            else if (i == Model.Count - 1)
+            {
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i].ParkCode })">
+                            <h3>@Model[i].ParkName</h3>
+                            <p> @Model[i].VoteCount Vote(s)</p>
+                        </a>
+                        <a href="@Url.Action("Detail", "Park", new {id = Model[i].ParkCode })">
+                            <img class="img-fluid" src="~/Content/img/parks/@(Model[i].ParkCode).jpg" />
+                        </a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+}
+
+

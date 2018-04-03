@@ -1,0 +1,33 @@
+﻿@using Capstone.Web.Models
+@model Survey
+@section Stylesheet{
+    <link href="~/Content/SurveyIndex.css" rel="stylesheet" />
+}
+
+<div class="survey-container">
+    
+
+    <!------------------- FORM ----------------------->
+
+    <form method="POST" action="@Url.Action("Index", "Survey")">
+        <h1 class="text-center">Take our Survey!</h1>
+        <div class="form-group">
+            <label for="parks">Favorite Park</label>
+            @Html.DropDownList("ParkCode", TempData["Parks"] as List<SelectListItem>, new { id = "parks", @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input class="form-control" type="email" name="Email" id="email" required />
+        </div>
+        <div class="form-group">
+            <label for="state">State of Residence</label>
+            @Html.DropDownList("State", TempData["States"] as List<SelectListItem>, new { id = "state", @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="activity-level">Physical Activity Level</label>
+            @Html.DropDownList("ActivityLevel", TempData["ActivityLevel"] as List<SelectListItem>, new { id = "activity-level", @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Vote</button>
+    </form>
+</div>
+

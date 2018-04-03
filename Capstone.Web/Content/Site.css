@@ -1,0 +1,39 @@
+﻿html {
+   min-height: 100%;
+}
+
+body {
+    background-color: ghostwhite;
+    color: #1b1b1b;
+    font-family: Rockwell;
+    min-height: 100vh;
+}
+
+
+
+.navbar-brand img{
+    width:10em;
+    
+}
+
+.navbar, .footer {
+    background-color: black;
+    color: floralwhite;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.container {
+    padding-top: 2em;
+}
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    margin-top: 4%;
+}
