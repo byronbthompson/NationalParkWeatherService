@@ -1,4 +1,4 @@
-# National Park Park Weather Service
+# National Park Weather Service
 
 ## A Weather Advisory App For The Top National Parks In The Country.
 
