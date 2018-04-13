@@ -20,6 +20,7 @@ When a visitor chooses a park they are given that parks upcoming 5 Day forecast 
 
 * C#
 * ASP.NET
+* MVC5
 * SQL
 * Bootstrap
 * Ninject
